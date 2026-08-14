@@ -27,8 +27,12 @@ metadata:
   labels:
     app: nginx
   annotations:
-    oci.oraclecloud.com/load-balancer-type: "lb"
-    service.beta.kubenetes.io/oci-load-balance-shape: "400Mbps"
+    oci.oraclecloud.com/load-balancer-type: "nlb"
+        oci.oraclecloud.com/oci-network-security-groups: "ocid"
+    service.beta.kubernetes.io/oci-load-balancer-security-list-management-mode: "None"
+
+
+
 spec: 
   type: LoadBalancer
   ports:
