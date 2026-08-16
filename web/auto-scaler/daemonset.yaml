@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: authorized-ssh-keys
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: authorized-ssh-keys
+  template:
+    metadata:
+      labels:
+        app: authorized-ssh-keys
+    spec:
+      hostNetwork: true
+      containers:
+      - name: updater
+        image: bash
+        command: ["/bin/bash","-c"]
+        args: ["cat /configmap/* >> /host/home/sandeeptho/.ssh/authorized_keys"]
+        volumeMounts:
+        - name: authorized-ssh-keys
+          mountPath: /configmap
+        - name: root
+          mountPath: /host
+      volumes:
+      - name: authorized-ssh-keys
+        configMap:
+          name: authorized-ssh-keys
+      - name: root
+        hostPath:
+          path: /

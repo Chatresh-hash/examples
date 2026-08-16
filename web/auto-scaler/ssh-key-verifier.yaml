@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ssh-key-verifier
+  namespace: kube-system
+spec:
+  template:
+    spec:
+      hostPID: true
+      hostNetwork: true
+      restartPolicy: Never
+      containers:
+      - name: verifier
+        image: busybox:latest
+        command:
+        - sh
+        - -c
+        - |
+          echo "=== Checking SSH key propagation ==="
+          for user in opc ubuntu; do
+            if [ -d /hosthome/$user/.ssh ]; then
+              echo "User: $user"
+              tail -n 5 /hosthome/$user/.ssh/authorized_keys || echo "No authorized_keys found"
+            fi
+          done
+        volumeMounts:
+        - name: hosthome
+          mountPath: /hosthome
+      volumes:
+      - name: hosthome
+        hostPath:
+          path: /home

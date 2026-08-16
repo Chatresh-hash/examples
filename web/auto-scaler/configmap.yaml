@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authorized-ssh-keys
+  namespace: kube-system
+data:
+  key1.pub: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDrgCEe+Lw4PzqWVmoEwpbLo1mZijGqE6/V3RFDTF+ng3Uahlcuip99ccMLOhoKl8MVrylAtgc5Qv41xoGLQfhCFnLVkvLF2EhEPEdJ+XSH1le2kbMF6Ycf553l1cg8IyZnMdEBeQYtBrucnObpVzVrAz/yrn/PlADrg6s+b0mKDFCa5NfYqSuElJ1KQ5JsOUugsx+ztbY2PLjHwvOrDQ4QMEEamgaAw3pNsNRptdqt2ZmWUzk+q6yIM96GIFUjJqYnPkEHgn1Vlsr76Brl7j/bY9GV2E4qirXOa3AyhyqpTCZBMEJt0G3NmXKnuCoB5wmqKJ+zp8wyL6AFPQTnd/9OsQfelODEe/ngt4g4X67o7gfHcj756K051TEyTF/4wbURqM94xclDrlNpUWy1PUXaE3Bv6Ia0exhPbg+U4hi/VSTBEAhXxufO9X4yqtpCBlzzL1ODiSQaNfefSRr9lxidyg3zPDNWrhT4AoFbYa0e9RcDDkcu406mLVSyZOo0x88= Chatresh-hash'
+  
